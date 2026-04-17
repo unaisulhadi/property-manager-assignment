@@ -1,3 +1,7 @@
 from django.urls import path
 
-urlpatterns = []
+from .views import PropertyListAPIView
+
+urlpatterns = [
+    path('properties/', PropertyListAPIView.as_view(), name='property-list'),
+]
