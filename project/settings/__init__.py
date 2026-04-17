@@ -138,6 +138,10 @@ REST_FRAMEWORK = {
     "EXCEPTION_HANDLER": "core.exceptions.CustomExceptionHandler",
 }
 
+SWAGGER_SETTINGS = {
+    "USE_SESSION_AUTH": False,
+}
+
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(hours=12),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),

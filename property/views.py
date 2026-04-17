@@ -53,7 +53,10 @@ class UnitListByPropertyCreateAPIView(ListCreateAPIView):
     serializer_class = UnitSerializer
 
     def get_queryset(self):
-        return Unit.objects.filter(property=self.kwargs["pk"])
+        property_id = self.kwargs.get("pk")
+        if property_id is None:
+            return Unit.objects.none()
+        return Unit.objects.filter(property_id=property_id)
 
     def get(self, request, *args, **kwargs):
         units = self.get_queryset()

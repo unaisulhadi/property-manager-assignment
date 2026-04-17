@@ -12,8 +12,12 @@ from core.utils import format_serializer_errors
 
 
 class LoginView(GenericAPIView):
+
+    def get_serializer_class(self):
+        return LoginSerializer
+
     def post(self, request):
-        serializer = LoginSerializer(data=request.data)
+        serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             email = serializer.validated_data["email"]
             password = serializer.validated_data["password"]
@@ -51,8 +55,12 @@ class LoginView(GenericAPIView):
 
 
 class RegisterUserView(GenericAPIView):
+
+    def get_serializer_class(self):
+        return RegisterSerializer
+
     def post(self, request):
-        serializer = RegisterSerializer(data=request.data)
+        serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
             response_serializer = LoginResponseSerializer(user)
