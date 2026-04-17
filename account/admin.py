@@ -6,7 +6,6 @@ from .models import AuthUser
 class UserAdmin(BaseUserAdmin):
     model = AuthUser
 
-    # Fields to be used in displaying the User model.
     list_display = ('email', 'first_name', 'last_name', 'is_staff', 'is_superuser', 'is_active')
     list_filter = ('is_staff', 'is_superuser', 'is_active')
 
@@ -17,7 +16,6 @@ class UserAdmin(BaseUserAdmin):
         ('Important dates', {'fields': ('last_login',)}),
     )
 
-    # Add fields when creating a new user
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
