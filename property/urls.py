@@ -23,5 +23,5 @@ urlpatterns = [
         UnitListByPropertyCreateAPIView.as_view(),
         name="unit-create",
     ),
-    path("properties/units/", ListAllUnitsAPIView.as_view(), name="unit-list"),
+    path("units/", ListAllUnitsAPIView.as_view(), name="unit-list"),
 ]
