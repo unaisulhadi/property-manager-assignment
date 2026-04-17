@@ -1,19 +1,17 @@
-import logging
-
 from django.contrib.auth import authenticate
 from rest_framework import status
 from rest_framework.generics import GenericAPIView
-from rest_framework.permissions import IsAuthenticated
 
-from account.serializers import (LoginResponseSerializer, LoginSerializer, RegisterSerializer)
+from account.serializers import (
+    LoginResponseSerializer,
+    LoginSerializer,
+    RegisterSerializer,
+)
 from core.response import ErrorResponse, SuccessResponse
 from core.utils import format_serializer_errors
 
-logger = logging.getLogger("base_logger")
-
 
 class LoginView(GenericAPIView):
-
     def post(self, request):
         serializer = LoginSerializer(data=request.data)
         if serializer.is_valid():
@@ -53,7 +51,6 @@ class LoginView(GenericAPIView):
 
 
 class RegisterUserView(GenericAPIView):
-
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():

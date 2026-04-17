@@ -3,7 +3,9 @@ import logging
 from django.db.utils import IntegrityError
 from rest_framework.views import exception_handler
 from rest_framework_simplejwt.exceptions import (
-    InvalidToken, TokenError, AuthenticationFailed as JWTAuthenticationFailed
+    InvalidToken,
+    TokenError,
+    AuthenticationFailed as JWTAuthenticationFailed,
 )
 from rest_framework.exceptions import (
     APIException,
@@ -15,12 +17,12 @@ from rest_framework.exceptions import (
     NotAcceptable,
     UnsupportedMediaType,
     ParseError,
-    Throttled
+    Throttled,
 )
 
 from core.response import ErrorResponse
 
-logger = logging.getLogger('base_logger')
+logger = logging.getLogger("base_logger")
 
 
 class CustomExceptionHandler:
@@ -42,7 +44,7 @@ class CustomExceptionHandler:
         ParseError: 400,
         IntegrityError: 400,
         APIException: 500,
-        Throttled: 429  # Special case for rate-limiting or throttling errors
+        Throttled: 429,  # Special case for rate-limiting or throttling errors
     }
 
     exception_messages = {
@@ -59,7 +61,7 @@ class CustomExceptionHandler:
         InvalidToken: "The provided token is invalid or has expired. Please obtain a new token.",
         TokenError: "Token-related error. The token is invalid, expired, or malformed.",
         Throttled: "Too many requests. Please try again later.",
-        APIException: "An internal server error occurred. Please try again later."
+        APIException: "An internal server error occurred. Please try again later.",
     }
 
     @classmethod
@@ -79,7 +81,7 @@ class CustomExceptionHandler:
         logger.error(f"Exception occurred: {exc}")
 
         # Default response from DRF's exception handler
-        response = exception_handler(exc, context)
+        _ = exception_handler(exc, context)
 
         # Determine the status code based on exception type
         status_code = cls.status_code_mapping.get(type(exc), 500)

@@ -1,3 +1,2 @@
 DEBUG = False
 AUTH_PASSWORD_VALIDATORS = []
-

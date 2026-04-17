@@ -1,5 +1,3 @@
-from django.contrib.auth import password_validation
-from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
 
@@ -29,7 +27,6 @@ class RegisterSerializer(serializers.Serializer):
 
 
 class LoginResponseSerializer(serializers.Serializer):
-
     @staticmethod
     def get_token(user):
         refresh = RefreshToken.for_user(user)
@@ -48,4 +45,3 @@ class LoginResponseSerializer(serializers.Serializer):
             "last_name": instance.last_name,
             "full_name": instance.full_name,
         }
-

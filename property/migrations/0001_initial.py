@@ -5,48 +5,102 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Member',
+            name="Member",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('full_name', models.CharField(max_length=255)),
-                ('email', models.EmailField(max_length=254, unique=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("full_name", models.CharField(max_length=255)),
+                ("email", models.EmailField(max_length=254, unique=True)),
             ],
         ),
         migrations.CreateModel(
-            name='Property',
+            name="Property",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
-                ('address', models.TextField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
+                ("address", models.TextField()),
             ],
         ),
         migrations.CreateModel(
-            name='Unit',
+            name="Unit",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('unit_number', models.CharField(max_length=255)),
-                ('monthly_rent', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('status', models.CharField(choices=[('AVAILABLE', 'Available'), ('OCCUPIED', 'Occupied')], default='AVAILABLE', max_length=255)),
-                ('property', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='property.property')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("unit_number", models.CharField(max_length=255)),
+                ("monthly_rent", models.DecimalField(decimal_places=2, max_digits=10)),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[("AVAILABLE", "Available"), ("OCCUPIED", "Occupied")],
+                        default="AVAILABLE",
+                        max_length=255,
+                    ),
+                ),
+                (
+                    "property",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="property.property",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Contract',
+            name="Contract",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('start_date', models.DateField()),
-                ('end_date', models.DateField()),
-                ('monthly_rent', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('member', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='property.member')),
-                ('unit', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='property.unit')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("start_date", models.DateField()),
+                ("end_date", models.DateField()),
+                ("monthly_rent", models.DecimalField(decimal_places=2, max_digits=10)),
+                (
+                    "member",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="property.member",
+                    ),
+                ),
+                (
+                    "unit",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="property.unit"
+                    ),
+                ),
             ],
         ),
     ]
